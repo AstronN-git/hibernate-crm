@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/customerList.css}">
+</head>
+<body>
+<div class="header-item">List of customers:</div>
+
+<button class="create-user-button" onclick="document.location = '/customer/createUser';">
+    <span>Create user</span>
+</button>
+
+<div class="wrapper">
+    <div class="item header-item">ID</div>
+    <div class="item header-item">First name</div>
+    <div class="item header-item">Last name</div>
+    <div class="item header-item">Email</div>
+    <div class="item header-item">Action</div>
+
+    <th:block th:each="user : ${users}">
+        <div class="item" th:text="${user.id}"></div>
+        <div class="item" th:text="${user.firstName}"></div>
+        <div class="item" th:text="${user.lastName}"></div>
+        <div class="item" th:text="${user.email}"></div>
+        <div class="item">
+            <form th:action="@{/customer/updateUser/}" method="post">
+                <input type="hidden" name="userId" th:value="${user.id}">
+                <button type="submit">Update</button>
+            </form> | <form th:action="@{/customer/deleteUser/}" method="post"
+                            onsubmit="if (!confirm('Do you really want do delete this user?')) return false">
+                <input type="hidden" name="userId" th:value="${user.id}">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    </th:block>
+</div>
+</body>
+</html>

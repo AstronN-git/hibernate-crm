@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/createUser.css}">
+</head>
+<body>
+<a th:href="@{/customer/list}">Get back</a>
+
+<div class="container">
+    <div class="card">
+        <div class="card-image">
+            <div class="card-heading">
+                Create user
+                <small>Add new user to the database</small>
+            </div>
+        </div>
+        <form th:action="@{/customer/saveUser}" th:object="${user}" class="cardForm" method="post">
+            <div class="input">
+                <input type="text" th:field="*{firstName}" class="input-field" id="firstName" required/>
+                <label for="firstName" class="input-label">First name</label>
+            </div>
+            <div class="input">
+                <input type="text" class="input-field" th:field="*{lastName}" id="lastName" required/>
+                <label for="lastName" class="input-label">Last name</label>
+            </div>
+            <div class="input">
+                <input type="text" class="input-field" th:field="*{email}" id="email" required/>
+                <label for="email" class="input-label">Email</label>
+            </div>
+            <div class="action">
+                <button type="submit" class="action-button">Create user</button>
+            </div>
+        </form>
+        <div class="card-info">
+            Enjoy my service © Max
+        </div>
+    </div>
+</div>
+</body>
+</html>
