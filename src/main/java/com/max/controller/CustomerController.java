@@ -34,7 +34,6 @@ public class CustomerController {
     @PostMapping("/saveUser")
     public String saveNewUser (@ModelAttribute User user, Model model) {
         userService.saveUser(user);
-        System.out.println(user.toString());
         return "redirect:/customer/list";
     }
 

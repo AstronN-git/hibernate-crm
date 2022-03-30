@@ -3,12 +3,9 @@ package com.max.config;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.*;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate5.*;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.thymeleaf.spring5.ISpringTemplateEngine;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
@@ -19,10 +16,11 @@ import javax.sql.DataSource;
 import java.time.Duration;
 import java.util.Properties;
 
-@EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = {"com.max"})
+@EnableWebMvc
 @EnableTransactionManagement
+@EnableAspectJAutoProxy
+@ComponentScan(basePackages = {"com.max"})
 public class WebConfig implements WebMvcConfigurer {
     @Override
     @SuppressWarnings("SpringMVCViewInspection")
