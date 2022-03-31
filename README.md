@@ -28,14 +28,14 @@ It's my education project based on Spring+Hibernate Udemy course.
 - JDK 17
 - Tomcat 9
 - PostgreSQL
+- Gradle
 
 ---
-My next milestone is **Try to dive into Spring Security 👮‍♂️**
+My next milestone is to dive into **Spring Security 👮‍♂️**
 
-##### I'll try to implement:
+##### Later, I'll try to implement:
 
 - Hibernate Validation
-- Spring Security
 - Unit testing by JUnit
 
 Track new commits. Goodbye for now! ✋
