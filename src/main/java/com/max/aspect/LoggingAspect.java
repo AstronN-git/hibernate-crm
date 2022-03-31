@@ -1,41 +1,32 @@
 package com.max.aspect;
 
-import com.max.entity.User;
+import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.*;
-import org.aspectj.lang.reflect.MethodSignature;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Aspect
 @Component
 public class LoggingAspect {
+    private static final Logger logger = Logger.getLogger(LoggingAspect.class);
+
+    @Pointcut("execution(* com.max.*.*.*(..))")
+    public void all() {}
+
     @Pointcut("execution(* com.max.dao.*.*(..))")
-    public void daoPointcut() {}
+    public void dao() {}
 
-    @Pointcut("execution(* com.max.dao.*.get*(..))")
-    public void daoGetMethodsPointcut() {}
-
-    @Pointcut("execution(java.util.List com.max.dao.UserDAO.getUsers())")
-    public void daoListUsers() {}
-
-    @Before("daoPointcut()")
-    public void beforeDaoMethods(JoinPoint joinPoint) {
-        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-
-        System.out.println("> @Before " + signature.toString());
+    @Before("dao()")
+    public void beforeUpdatingDatabase(JoinPoint joinPoint) {
+        logger.info("Using database with {" + joinPoint.getSignature() + "}");
     }
 
-    @Before("daoPointcut() && !daoGetMethodsPointcut()")
-    public void beforeUpdatingDatabase() {
-        System.out.println("> @Before some updates in db");
-    }
-
-    @AfterReturning(value = "daoListUsers()", returning = "users")
-    public void afterListingUsers(JoinPoint joinPoint, List<User> users) {
-        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-        System.out.println("> @AfterReturning " + signature.toString() + ":");
-        users.forEach(System.out::println);
+    @AfterThrowing(value = "all()", throwing = "exception")
+    public void logError(JoinPoint joinPoint, Throwable exception) {
+        logger.error("Something went wrong at {" + joinPoint.getSignature() + "}");
+        logger.error(exception);
     }
 }

@@ -1,5 +1,9 @@
 package com.max.config;
 
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.apache.log4j.SimpleLayout;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -22,5 +26,17 @@ public class AppInitializer implements WebApplicationInitializer {
                 = servletContext.addServlet("main", new DispatcherServlet(new GenericWebApplicationContext()));
         mainServlet.setLoadOnStartup(1);
         mainServlet.addMapping("/");
+
+        initLogging();
+    }
+
+    private void initLogging () {
+        ConsoleAppender appender = new ConsoleAppender();
+
+        appender.setLayout(new SimpleLayout());
+        appender.setThreshold(Level.ALL);
+        appender.activateOptions();
+
+        Logger.getRootLogger().addAppender(appender);
     }
 }
