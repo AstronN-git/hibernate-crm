@@ -39,7 +39,7 @@ dependencies {
     implementation("org.thymeleaf:thymeleaf:${Versions.thymeleafVersion}")
     implementation("org.thymeleaf:thymeleaf-spring5:${Versions.thymeleafVersion}")
 
-    implementation("org.apache.logging.log4j:log4j-api:${Versions.log4jVersion}")
+    implementation("org.apache.logging.log4j:log4j-core:${Versions.log4jVersion}")
     implementation("org.apache.logging.log4j:log4j-api:${Versions.log4jVersion}")
 
     implementation("org.slf4j:slf4j-api:${Versions.slf4jVersion}")
