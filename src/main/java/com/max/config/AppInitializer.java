@@ -1,9 +1,6 @@
 package com.max.config;
 
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.log4j.SimpleLayout;
+import org.apache.log4j.*;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -33,7 +30,10 @@ public class AppInitializer implements WebApplicationInitializer {
     private void initLogging () {
         ConsoleAppender appender = new ConsoleAppender();
 
-        appender.setLayout(new SimpleLayout());
+        PatternLayout patternLayout = new
+                PatternLayout("%d{MMM/dd HH:mm:ss} %-5p [%t] %m%n");
+
+        appender.setLayout(patternLayout);
         appender.setThreshold(Level.ALL);
         appender.activateOptions();
 
