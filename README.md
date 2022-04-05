@@ -11,6 +11,7 @@ It's my education project based on Spring+Hibernate Udemy course.
 ##### Minor staff:
 - Logging
 - Using AOP via Spring AOP
+- Secure via Spring Security
 
 ---
 ##### List of technologies:
@@ -21,6 +22,7 @@ It's my education project based on Spring+Hibernate Udemy course.
 - Project Lombok
 - Log4J Logging
 - Spring AOP
+- Spring Security
 - JavaEE
 
 ##### And all this staff works on:

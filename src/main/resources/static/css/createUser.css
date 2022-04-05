@@ -131,3 +131,11 @@ a {
 a:hover, a:visited, a:link, a:active {
     text-decoration: none;
 }
+
+.error {
+    color: #f00;
+}
+
+.success {
+    color: #3c3;
+}

@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{/css/customerList.css}">
+    <link rel="stylesheet" th:href="@{/css/customerListAdmin.css}" sec:authorize="hasRole('ADMIN')">
 </head>
 <body>
 <div class="header-item">List of customers:</div>
 
-<button class="create-user-button" onclick="document.location = '/customer/createUser';">
+<button class="create-user-button" onclick="document.location = '/customer/createUser';" sec:authorize="hasRole('ADMIN')">
     <span>Create user</span>
 </button>
 
@@ -18,14 +20,14 @@
     <div class="item header-item">First name</div>
     <div class="item header-item">Last name</div>
     <div class="item header-item">Email</div>
-    <div class="item header-item">Action</div>
+    <div class="item header-item" sec:authorize="hasRole('ADMIN')">Action</div>
 
     <th:block th:each="user : ${users}">
         <div class="item" th:text="${user.id}"></div>
         <div class="item" th:text="${user.firstName}"></div>
         <div class="item" th:text="${user.lastName}"></div>
         <div class="item" th:text="${user.email}"></div>
-        <div class="item">
+        <div class="item" sec:authorize="hasRole('ADMIN')">
             <form th:action="@{/customer/updateUser/}" method="post">
                 <input type="hidden" name="userId" th:value="${user.id}">
                 <button type="submit">Update</button>
@@ -37,5 +39,9 @@
         </div>
     </th:block>
 </div>
+
+<footer>
+    <form th:action="@{/logout}" method="post"><button type="submit" class="logout">Logout</button></form>
+</footer>
 </body>
 </html>

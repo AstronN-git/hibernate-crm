@@ -22,8 +22,14 @@ object Versions {
 dependencies {
     implementation("org.springframework:spring-webmvc:${Versions.springVersion}")
     implementation("org.springframework:spring-orm:${Versions.springVersion}")
+    implementation("javax.annotation:javax.annotation-api:1.3.2")
     implementation("org.springframework:spring-aop:${Versions.springVersion}")
     implementation("org.aspectj:aspectjweaver:1.9.9")
+
+    implementation("org.springframework.security:spring-security-core:5.6.2")
+    implementation("org.springframework.security:spring-security-web:5.6.2")
+    implementation("org.springframework.security:spring-security-config:5.6.2")
+    implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE")
 
     implementation("org.apache.tomcat:tomcat-jasper:9.0.60")
     implementation("javax.servlet:javax.servlet-api:4.0.1")
