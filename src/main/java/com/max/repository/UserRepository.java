@@ -41,4 +41,12 @@ public class UserRepository implements UserDAO {
         Session session = sessionFactory.getCurrentSession();
         session.delete(user);
     }
+
+    @Override
+    public User findByLogin(String login) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<User> query = session.createQuery("from User where login=:login", User.class);
+        query.setParameter("login", login);
+        return query.getSingleResult();
+    }
 }

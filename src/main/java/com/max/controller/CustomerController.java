@@ -1,6 +1,7 @@
 package com.max.controller;
 
 import com.max.entity.User;
+import com.max.security.Encoders;
 import com.max.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +34,7 @@ public class CustomerController {
 
     @PostMapping("/saveUser")
     public String saveNewUser (@ModelAttribute User user, Model model) {
+        user.setPassword(Encoders.passwordEncoder().encode(user.getPassword()));
         userService.saveUser(user);
         return "redirect:/customer/list";
     }

@@ -19,6 +19,14 @@
         </div>
         <form th:action="@{/customer/saveUser}" th:object="${user}" class="cardForm" method="post">
             <div class="input">
+                <input type="text" th:field="*{login}" class="input-field" id="login" required/>
+                <label for="login" class="input-label">Login</label>
+            </div>
+            <div class="input">
+                <input type="password" th:field="*{password}" class="input-field" id="password" required/>
+                <label for="password" class="input-label">Password</label>
+            </div>
+            <div class="input">
                 <input type="text" th:field="*{firstName}" class="input-field" id="firstName" required/>
                 <label for="firstName" class="input-label">First name</label>
             </div>
