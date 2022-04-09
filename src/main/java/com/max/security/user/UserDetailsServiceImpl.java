@@ -1,5 +1,6 @@
 package com.max.security.user;
 
+import com.max.entity.User;
 import com.max.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,10 +20,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        User user = userService.findByLogin(login);
+
         UserDetails userDetails =
-                new UserDetailsImpl(login,
-                        userService.findByLogin(login).getPassword());
-        logger.info("loaded user: " + userDetails.getUsername() + " " + userDetails.getPassword());
+                new UserDetailsImpl(
+                        user.getLogin(),
+                        user.getPassword(),
+                        user.getAuthorities()
+                );
+        logger.info("loaded user: " + user);
         return userDetails;
     }
 }
