@@ -12,6 +12,7 @@ It's my education project based on Spring+Hibernate Udemy course.
 - Logging
 - Using AOP via Spring AOP
 - Secure via Spring Security
+- REST Api on /api/v1/**
 
 ---
 ##### List of technologies:
@@ -33,7 +34,7 @@ It's my education project based on Spring+Hibernate Udemy course.
 - Gradle
 
 ---
-My next milestone is to dive into **Spring Security 👮‍♂️**
+My next milestone is to dive into **️Building REST Api**
 
 ##### Later, I'll try to implement:
 

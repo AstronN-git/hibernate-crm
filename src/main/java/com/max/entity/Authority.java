@@ -1,8 +1,8 @@
 package com.max.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 
@@ -17,6 +17,7 @@ public class Authority {
 
     @ManyToOne
     @JoinColumn(name = "login", referencedColumnName = "login")
+    @JsonIgnore
     private User user;
 
     @Column(name = "authority")
