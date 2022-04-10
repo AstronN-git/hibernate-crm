@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserRepository implements UserDAO {
@@ -47,6 +48,11 @@ public class UserRepository implements UserDAO {
         Session session = sessionFactory.getCurrentSession();
         Query<User> query = session.createQuery("from User where login=:login", User.class);
         query.setParameter("login", login);
-        return query.getSingleResult();
+
+        Optional<User> user = query.uniqueResultOptional();
+
+        if (user.isEmpty()) return null;
+
+        return user.get();
     }
 }
