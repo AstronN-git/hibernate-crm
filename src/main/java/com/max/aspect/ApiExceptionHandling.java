@@ -1,6 +1,7 @@
 package com.max.aspect;
 
 import com.max.dto.ErrorResponse;
+import com.max.exception.AuthenticationException;
 import com.max.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,16 @@ public class ApiExceptionHandling {
         response.setMessage(exception.getMessage());
 
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> authenticationError(AuthenticationException exception) {
+        ErrorResponse response = new ErrorResponse();
+
+        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        response.setMessage(exception.getMessage());
+
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler
