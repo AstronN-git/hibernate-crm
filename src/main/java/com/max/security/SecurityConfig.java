@@ -47,7 +47,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .logoutSuccessUrl("/login?logout")
                 .permitAll()
             .and()
-                .exceptionHandling().accessDeniedPage("/error/forbidden");
+                .exceptionHandling().accessDeniedPage("/error/forbidden")
+            .and()
+                .csrf().ignoringAntMatchers("/api/v1/**");
 
         logger.info("Spring security http initialized successfully");
     }
